@@ -1,0 +1,26 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BaseScript : MonoBehaviour {
+
+    private Animator anim;    
+	private float speed=2.0f;
+    // Use this for initialization
+	void Start () {
+        anim = GetComponent<Animator>();
+	}
+	
+	// Update is called once per frame
+	void Update () {
+        float trans= Input.GetAxis("Horizontal")*speed;
+        trans*=Time.deltaTime;
+		transform.Translate(0,0,trans);
+		if (trans!=0)
+		{
+			anim.SetBool("IsWalk",true);
+		} else{
+			anim.SetBool("IsWalk",false);
+		}
+	}
+}
